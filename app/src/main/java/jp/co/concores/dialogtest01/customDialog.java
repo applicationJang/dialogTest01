@@ -21,6 +21,8 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
+import jp.co.concores.dialogtest01.Util.Util;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +33,6 @@ public class customDialog extends DialogFragment implements View.OnClickListener
     private EditText editText;
 
     public customDialog() {
-        // Required empty public constructor
     }
 
 
@@ -61,7 +62,6 @@ public class customDialog extends DialogFragment implements View.OnClickListener
 
         open_datepicker = view.findViewById(R.id.open_datepicker);
         open_datepicker.setOnClickListener(this);
-
         editText = view.findViewById(R.id.editText);
     }
 
@@ -77,7 +77,8 @@ public class customDialog extends DialogFragment implements View.OnClickListener
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
+                        String date =  Util.changeDateFormat(year, month, dayOfMonth);
+                        editText.setText(date);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
